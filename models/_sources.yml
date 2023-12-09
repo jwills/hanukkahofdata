@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: noahs
+    config:
+      external_location: "5784/noahs-{identifier}.csv"
+    tables:
+      - name: customers
+      - name: orders
+      - name: orders_items
+      - name: products

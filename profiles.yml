@@ -1,0 +1,10 @@
+hanukkahofdata:
+  outputs:
+    default:
+      type: duckdb
+      path: noahs.duckdb
+      threads: 1
+      extensions: [spatial]
+      module_paths: [lib]
+      plugins:
+        - module: udfs
