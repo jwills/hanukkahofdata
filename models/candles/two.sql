@@ -7,14 +7,14 @@ WITH jps AS (
 coffee_and_bagels AS (
     SELECT *
     FROM {{ ref('stg_products') }}
-    WHERE description LIKE '%offee%'
-    OR description LIKE '%agel%'
+    WHERE "desc" LIKE '%offee%'
+    OR "desc" LIKE '%agel%'
 ),
 jp_orders2017 AS (
     SELECT orderid
     , customerid
     FROM {{ ref('stg_orders') }}
-    WHERE year(order_dt) = 2017
+    WHERE year(ordered) = 2017
     AND customerid IN (SELECT customerid FROM jps)
 ),
 coffee_jp_orders_2017 AS (

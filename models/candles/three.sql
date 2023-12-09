@@ -2,11 +2,13 @@ WITH cancers_in_year_of_the_rabbit AS (
     SELECT customerid
     , ST_Point(lat, long) as home
     FROM {{ ref('stg_customers') }}
-    WHERE year(birth_dt) IN (1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023)
+    -- year of the rabbit check
+    WHERE year(birthdate) IN (1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023)
     AND
     (
-        (monthname(birth_dt) = 'June' AND day(birth_dt) BETWEEN 22 AND 30)
-        OR (monthname(birth_dt) = 'July' AND day(birth_dt) BETWEEN 1 AND 22)
+        -- Cancer Zodiac check
+        (monthname(birthdate) = 'June' AND day(birthdate) BETWEEN 22 AND 30)
+        OR (monthname(birthdate) = 'July' AND day(birthdate) BETWEEN 1 AND 22)
     )
 ),
 contractor_lat_long AS (
