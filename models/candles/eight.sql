@@ -15,6 +15,7 @@ top_collector_id AS (
     INNER JOIN collectibles_order_items oi ON o.orderid = oi.orderid
     GROUP BY o.customerid
     ORDER BY collectibles_count DESC
+    LIMIT 1
 )
 SELECT c.customerid, c.name, c.phone
 FROM {{ ref('stg_customers') }} c
