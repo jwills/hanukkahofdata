@@ -3,7 +3,7 @@ hanukkahofdata:
     default:
       type: duckdb
       path: noahs.duckdb
-      threads: 1
+      threads: 4
       extensions: [spatial]
       module_paths: [lib]
       plugins:

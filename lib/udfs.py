@@ -1,4 +1,5 @@
 from duckdb import DuckDBPyConnection
+import numpy.core.multiarray # noqa, see https://duckdb.org/docs/archive/0.9.2/api/python/known_issues#numpy-import-multithreading
 
 from dbt.adapters.duckdb.plugins import BasePlugin
 
