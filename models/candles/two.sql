@@ -1,8 +1,8 @@
 WITH jps AS (
     SELECT *
     FROM {{ ref('stg_customers') }}
-    WHERE split_part(name, ' ', 1) LIKE 'J%'
-    AND split_part(name, ' ', 2) LIKE 'P%'
+    WHERE split_part(name, ' ', 1) LIKE 'D%'
+    AND split_part(name, ' ', 2) LIKE 'S%'
 ),
 coffee_and_bagels AS (
     SELECT *

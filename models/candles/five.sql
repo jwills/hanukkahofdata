@@ -1,12 +1,12 @@
 WITH staten_island_customers AS (
     SELECT *
     FROM {{ ref('stg_customers') }}
-    WHERE citystatezip LIKE 'Staten Island%'
+    WHERE citystatezip LIKE 'Brooklyn%'
 ),
 cat_food_skus AS (
     SELECT sku
     FROM {{ ref('stg_products') }}
-    WHERE "desc" LIKE '%Cat Food%'
+    WHERE "desc" LIKE '%Senior Cat Food%'
 ),
 cat_food_orders AS (
     SELECT orderid, COUNT(1) as cat_food_count
@@ -26,6 +26,8 @@ cat_food_orders_by_customer_with_staten_island AS (
     INNER JOIN cat_food_orders_by_customer cfo ON c.customerid = cfo.customerid
     ORDER BY cfo.cat_food_count DESC
 )
-SELECT *
-FROM cat_food_orders_by_customer_with_staten_island
+SELECT c.customerid, c.name, c.phone, cfo.cat_food_count
+FROM cat_food_orders_by_customer cfo
+INNER JOIN {{ ref('stg_customers') }} c ON cfo.customerid = c.customerid
+ORDER BY cfo.cat_food_count DESC
 LIMIT 1
